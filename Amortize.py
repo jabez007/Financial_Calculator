@@ -4,9 +4,24 @@ import numpy as np
 from collections import OrderedDict
 from dateutil.relativedelta import *
 
+"""
+http://pbpython.com/amortization-model-revised.html
+"""
+
 
 def amortize(principal, interest_rate, years,
              reg_payment=None, addl_payment=0, annual_payments=12, start_date=date.today()):
+    """
+
+    :param principal:
+    :param interest_rate:
+    :param years:
+    :param reg_payment:
+    :param addl_payment:
+    :param annual_payments:
+    :param start_date:
+    :return:
+    """
 
     if reg_payment is None:
         # if the monthly payment is not given, calculate what it probably is
@@ -46,6 +61,11 @@ def amortize(principal, interest_rate, years,
 
 
 def blended(loans):
+    """
+
+    :param loans:
+    :return:
+    """
     total = 0
     total_interest = 0
     for l in loans:
@@ -55,6 +75,11 @@ def blended(loans):
 
 
 def read_loans(file_name="loans"):
+    """
+
+    :param file_name:
+    :return:
+    """
     with open(file_name, "r") as loans_file:
         loans_raw = [line.strip().split(",") for line in loans_file.readlines()]
 
