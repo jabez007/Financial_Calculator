@@ -10,16 +10,22 @@ class Graph(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
+
         label = tk.Label(self, text="Graph Page!")
         label.pack(pady=10, padx=10)
 
-        button1 = ttk.Button(self, text="Back to Home",
-                             command=lambda: controller.show_frame("StartPage"))
-        button1.pack()
+        button_frame = ttk.Frame(self)
+        button_frame.pack(fill=tk.X)
 
-        button2 = ttk.Button(self, text="Table Page",
+        button1 = ttk.Button(button_frame,
+                             text="Back to Home",
+                             command=lambda: controller.show_frame("StartPage"))
+        button1.pack(side=tk.LEFT)
+
+        button2 = ttk.Button(button_frame,
+                             text="Table Page",
                              command=lambda: controller.show_frame("Table"))
-        button2.pack()
+        button2.pack(side=tk.LEFT)
 
         f = Figure(figsize=(10, 10), dpi=100)
         a = f.add_subplot(111)

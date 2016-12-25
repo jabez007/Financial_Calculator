@@ -1,6 +1,7 @@
 # The code for changing pages was derived from: http://stackoverflow.com/questions/7546050/switch-between-two-frames-in-tkinter
 # License: http://creativecommons.org/licenses/by-sa/3.0/	
 import tkinter as tk
+import tkFileDialog
 import pandas as pd
 
 from Functions import *
@@ -23,6 +24,8 @@ class GUI(tk.Tk):
         container.grid_rowconfigure(0, weight=1)
         container.grid_columnconfigure(0, weight=1)
 
+        self._init_ui_()
+
         self.frames = dict()
 
         self.schedule = self.get_schedule()
@@ -35,6 +38,27 @@ class GUI(tk.Tk):
             frame.grid(row=0, column=0, sticky="nsew")
 
         self.show_frame("StartPage")
+
+    def _init_ui_(self):
+        menubar = tk.Menu(self)
+
+        # # Load menu
+        load_menu = tk.Menu(menubar,
+                            tearoff=0)
+        load_menu.add_command(label='Loans...',
+                              command=self.load_loans)
+
+        menubar.add_cascade(label="Open",
+                            menu=load_menu)
+
+        self.config(menu=menubar)
+
+    def load_loans(self):
+        file_name = tkFileDialog.askopenfilename(defaultextension='.txt',
+                                                 filetypes=[('text files', '.txt'),
+                                                            ('comma delimited files', '.csv'),
+                                                            ('all files', '.*')])
+
 
     def get_schedule(self):
         student_loans = read_loans()
