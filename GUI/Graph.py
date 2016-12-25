@@ -7,6 +7,7 @@ from tkinter import ttk
 
 
 class Graph(tk.Frame):
+
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         label = tk.Label(self, text="Graph Page!")
@@ -20,9 +21,9 @@ class Graph(tk.Frame):
                              command=lambda: controller.show_frame("Table"))
         button2.pack()
 
-        f = Figure(figsize=(5, 5), dpi=100)
+        f = Figure(figsize=(10, 10), dpi=100)
         a = f.add_subplot(111)
-        a.plot([1, 2, 3, 4, 5, 6, 7, 8], [5, 6, 1, 3, 8, 9, 3, 5])
+        controller.schedule.plot(x='Month', y='End Balance', ax=a)
 
         canvas = FigureCanvasTkAgg(f, self)
         canvas.show()

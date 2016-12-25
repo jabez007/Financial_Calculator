@@ -3,6 +3,7 @@ from GUI import GUI
 
 
 if __name__ == "__main__":
+    """
     student_loans = read_loans()
     print student_loans
 
@@ -20,6 +21,6 @@ if __name__ == "__main__":
     fig.show()
 
     raw_input()
-
+    """
     app = GUI()
     app.mainloop()
